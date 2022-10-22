@@ -1,7 +1,14 @@
 import pandas as pd
-class DataCleaning:
-    def __init__(self) -> None:
-        pass
-    
-    def drop_columns(self,df,columns:list)->pd.DataFrame:
-        return df.drop(columns=columns)
+import numpy as np
+from sklearn.preprocessing import Normalizer, MinMaxScaler, StandardScaler
+
+
+class DataCleaner:
+    def drop_duplicate(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        drop duplicate rows
+        """
+        df.drop_duplicates(inplace=True)
+
+        return df
+        
