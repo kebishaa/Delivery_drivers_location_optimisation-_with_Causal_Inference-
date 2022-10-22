@@ -143,6 +143,12 @@ class DataCleaner:
         """
         minmax_scaler = MinMaxScaler()
         return pd.DataFrame(minmax_scaler.fit_transform(df[self.get_numerical_columns(df)]), columns=self.get_numerical_columns(df))
+    def standard_scaler(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        scale numerical columns
+        """
+        standard_scaler = StandardScaler()
+        return pd.DataFrame(standard_scaler.fit_transform(df[self.get_numerical_columns(df)]), columns=self.get_numerical_columns(df))
 
 
 
