@@ -47,5 +47,10 @@ class DataCleaner:
         get numerical columns
         """
         return df.select_dtypes(include=['number']).columns.to_list()
+    def get_categorical_columns(self, df: pd.DataFrame) -> list:
+        """
+        get categorical columns
+        """
+        return  df.select_dtypes(include=['object','datetime64[ns]']).columns.to_list()
 
  
