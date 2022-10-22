@@ -52,5 +52,48 @@ class DataCleaner:
         get categorical columns
         """
         return  df.select_dtypes(include=['object','datetime64[ns]']).columns.to_list()
+    def percent_missing_column(self, df: pd.DataFrame, col:str) -> float:
+        """
+        calculate the percentage of missing values for the specified column
+        """
+        try:
+            col_len = len(df[col])
+        except KeyError:
+            print(f"{col} not found")
+        missing_count = df[col].isnull().sum()
+
+        return round(missing_count / col_len * 100, 2)
+    
+    def fill_missing_values_categorical(self, df: pd.DataFrame, method: str) -> pd.DataFrame:
+        """
+        fill missing values with specified method
+        """
+
+        categorical_columns = df.select_dtypes(include=['object','datetime64[ns]']).columns
+
+        if method == "ffill":
+
+            for col in categorical_columns:
+                df[col] = df[col].fillna(method='ffill')
+
+            return df
+
+        elif method == "bfill":
+
+            for col in categorical_columns:
+                df[col] = df[col].fillna(method='bfill')
+
+            return df
+
+        elif method == "mode":
+            
+            for col in categorical_columns:
+                df[col] = df[col].fillna(df[col].mode()[0])
+
+            return df
+        else:
+            print("Method unknown")
+            return df
+
 
  
