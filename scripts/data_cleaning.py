@@ -120,6 +120,16 @@ class DataCleaner:
             print("Method unknown")
         
         return df
+    def remove_nan_categorical(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        remove columns with nan values for categorical columns
+        """
+
+        categorical_columns = self.get_categorical_columns(df)
+        for col in categorical_columns:
+            df = df[df[col] != 'nan']
+
+        return df
 
 
  
