@@ -11,4 +11,12 @@ class DataCleaner:
         df.drop_duplicates(inplace=True)
 
         return df
-        
+    def convert_to_datetime(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        convert column to datetime
+        """
+
+        df[['start','end']] = df[['start','end']].apply(pd.to_datetime)
+
+        return df 
+         
