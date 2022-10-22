@@ -100,6 +100,26 @@ class DataCleaner:
         drops unwanted columns in the dataframe
         """
         return df.drop(columns=columns)
+    def fill_missing_values_numeric(self, df: pd.DataFrame, method: str,columns: list =None) -> pd.DataFrame:
+        """
+        fill missing values with specified method
+        """
+        if(columns==None):
+            numeric_columns = self.get_numerical_columns(df)
+        else:
+            numeric_columns=columns
+
+        if method == "mean":
+            for col in numeric_columns:
+                df[col].fillna(df[col].mean(), inplace=True)
+
+        elif method == "median":
+            for col in numeric_columns:
+                df[col].fillna(df[col].median(), inplace=True)
+        else:
+            print("Method unknown")
+        
+        return df
 
 
  
