@@ -42,5 +42,10 @@ class DataCleaner:
         totalMising = missingCount.sum()
 
         return round(totalMising / totalCells * 100, 2)
+    def get_numerical_columns(self, df: pd.DataFrame) -> list:
+        """
+        get numerical columns
+        """
+        return df.select_dtypes(include=['number']).columns.to_list()
 
  
