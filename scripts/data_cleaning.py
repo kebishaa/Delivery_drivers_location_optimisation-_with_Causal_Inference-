@@ -130,6 +130,13 @@ class DataCleaner:
             df = df[df[col] != 'nan']
 
         return df
+    
+    def normalizer(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        normalize numerical columns
+        """
+        norm = Normalizer()
+        return pd.DataFrame(norm.fit_transform(df[self.get_numerical_columns(df)]), columns=self.get_numerical_columns(df))
 
 
  
