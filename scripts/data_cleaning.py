@@ -25,4 +25,12 @@ class DataCleaner:
         """
         df[['bearer_id', 'imsi', 'msisdn/number', 'imei','handset_type']] = df[['bearer_id', 'imsi', 'msisdn/number', 'imei','handset_type']].astype(str)
 
-        return df 
+        return df
+    def remove_whitespace_column(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        remove whitespace from columns
+        """
+        df.columns = [column.replace(' ', '_').lower() for column in df.columns]
+
+        return df
+ 
