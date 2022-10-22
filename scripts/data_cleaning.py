@@ -94,6 +94,12 @@ class DataCleaner:
         else:
             print("Method unknown")
             return df
+    
+    def drop_columns(self,df,columns:list)->pd.DataFrame:
+        """
+        drops unwanted columns in the dataframe
+        """
+        return df.drop(columns=columns)
 
 
  
