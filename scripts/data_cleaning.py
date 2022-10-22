@@ -19,4 +19,10 @@ class DataCleaner:
         df[['start','end']] = df[['start','end']].apply(pd.to_datetime)
 
         return df 
-         
+    def convert_to_string(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        convert columns to string
+        """
+        df[['bearer_id', 'imsi', 'msisdn/number', 'imei','handset_type']] = df[['bearer_id', 'imsi', 'msisdn/number', 'imei','handset_type']].astype(str)
+
+        return df 
