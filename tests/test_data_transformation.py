@@ -23,3 +23,11 @@ class TestCleaner(unittest.TestCase):
         location = (8.987664535755162, 38.789648739472355)
         test_df=pd.DataFrame(data=[[8.987664535755162, 38.789648739472355]],columns=["latitude","longitude"])
         self.assertEqual(cleaner.reverse_location(test_df).location.values[0].strip(),"አዲስ አበባ / Addis Ababa")
+    def test_holiday(self):
+        # new year
+        day = datetime(2022,1,1) 
+        
+        self.assertTrue(cleaner.check_holiday(day))
+
+if __name__ == "__main__":
+    unittest.main()
